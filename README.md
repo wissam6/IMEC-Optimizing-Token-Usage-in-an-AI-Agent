@@ -14,12 +14,16 @@ A small proof of concept that compares a **baseline RAG agent** with a **token-o
 | | Baseline | Combined (optimized) |
 |---|---|---|
 | Top-k | 10 | 4 |
-| `max_tokens` | none (model default) | 200 |
-| System prompt | answer from the context | answer from the context + length/structure constraints |
+| `max_tokens` | 1024 (a ceiling answers should never reach) | 200 |
+| System prompt | answer only from the context | same + constraints: at most 150 words, answer first, then one `Sources: [n]` line, no filler |
+
+All configs are defined in [src/config.py](src/config.py).
 
 **Optional ablations (only if time allows):** Top-k only (k=4, no length control) and Length only (k=10 + length control).
 
-**Held constant across configs:** the same LLM, temperature 0, the same embedding model and index, and the same conversation history for each turn.
+**Held constant across configs:** the same OpenAI model (`gpt-5.4-nano-2026-03-17`; `gpt-5.6-luna` was rejected because it does not support temperature 0), temperature 0, the same embedding model and index, the same conversation history for each turn, and the same retrieval query (MTRAG's standalone rewritten question).
+
+**Prompt design note:** Part B proposed "exactly two sentences". It was loosened to "at most 150 words, answer first" before any runs, because MTRAG reference answers have a median of 89 words; a one-sentence answer would lose FactualCorrectness recall by construction rather than because of the technique.
 
 **Dataset:** [MTRAG](https://github.com/IBM/mt-rag-benchmark), a human-written multi-turn RAG benchmark (`mtrag-human`, passage-level corpora).
 
@@ -47,9 +51,11 @@ A small proof of concept that compares a **baseline RAG agent** with a **token-o
 | Recall@k | whether the gold passage(s) are still retrieved at the lower k |
 | Truncation rate | share of answers with `finish_reason = length` |
 | RAGAS Faithfulness | whether the answer is supported by the retrieved context |
-| RAGAS FactualCorrectness | whether the answer agrees with the MTRAG reference answer |
+| RAGAS FactualCorrectness (F1) | whether the answer agrees with the MTRAG reference answer; **the pass/fail metric** |
+| FactualCorrectness precision | share of the answer's claims that the reference supports (*diagnostic only*: a drop means the agent says wrong things) |
+| FactualCorrectness recall | share of the reference's claims that the answer covers (*diagnostic only*: a drop means the agent says less) |
 
-RAGAS scores only the **answer part** of each response, not the cited-sources line.
+RAGAS scores only the **answer part** of each response, not the cited-sources line. Precision, recall and F1 are computed from a **single judge pass** per answer (one claim decomposition and verification, three numbers derived from it), not from three separate RAGAS runs, so the three are consistent with each other.
 
 ### Pass/fail rules (fixed before running)
 
@@ -57,14 +63,16 @@ Let Δ = mean(Combined) − mean(Baseline), and let *noise* be the absolute diff
 
 The optimized agent **passes** if both of these hold:
 
-1. **FactualCorrectness:** Δ ≥ −0.03, **or** |Δ| ≤ noise.
+1. **FactualCorrectness (F1):** Δ ≥ −0.03, **or** |Δ| ≤ noise.
 2. **Faithfulness:** Δ ≥ 0, **or** |Δ| ≤ noise.
+
+FactualCorrectness precision and recall are reported next to F1 to explain *why* F1 moved, but they do not enter the verdict.
 
 In other words, a drop only counts as real degradation if it is larger than the run-to-run noise. Turns where Combined scores lower than Baseline are reviewed by hand and labelled with a cause: *gold passage lost* (Recall@k), *truncated* (`finish_reason = length`), or *detail dropped* (shorter answer).
 
 ### Validation
 
-- **Smoke test:** 5 turns for both configs, read by hand before the full run.
+- **Smoke test:** the first 5 turns of the sample (indices 0–4) for both configs (10 calls), read by hand before the full run.
 - **Noise run:** Baseline is run twice to measure judge and model variance.
 - **Judge hand-check:** 20 RAGAS judgments are checked by hand against my own assessment.
 - **Unit tests** (`pytest`): the retriever returns exactly k passages, token counts are logged, each config changes only what it should, the system prompt contains the constraints, and the evaluation handles empty answers.
@@ -74,7 +82,8 @@ In other words, a drop only counts as real degradation if it is larger than the 
 ```
 src/
   retriever.py   embedding + top-k retrieval
-  agent.py       run(turn, config), configs, JSON-line logging of LLM calls
+  config.py      all configs and prompts in one place
+  agent.py       run(turn, config), JSON-line logging of every LLM call (results/logs/)
   eval.py        RAGAS, Recall@k, token/cost/latency summaries
 tests/           pytest unit tests
 data/            sampled turns (raw MTRAG download and index are git-ignored)
