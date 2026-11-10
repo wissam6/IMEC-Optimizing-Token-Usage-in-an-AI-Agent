@@ -1,0 +1,274 @@
+﻿task_id,config,question,reference,answer_scored,answer_claims (OK = supported by reference),reference_claims (OK = covered by answer),fc_precision,fc_recall,fc_f1,faithfulness,my_verdicts_agree (yes/partly/no),my_f1_estimate,notes
+0ef145e49938dfb9b6eefe781d21dca8<::>2,Baseline,child privacy,"For children's privacy, both the Caltech/JPL and CDC have specific policies in place. For a child under 13 years old, when information and instructions are provided by the specific Web page that collects information about the child, personal information about your child will be destroyed immediately upon completion of its intended purpose.  Further, the CDC requires a child's parent or guardian to provide consent before they collect, use, or share personal information from a child under age 13. They also delete immediately any information about a child that they might inadvertently collect. Their digital media channels are not intended to solicit information of any kind from children under age 13.  So, both organizations have policies in place to protect children's privacy and require parental consent for collecting, using, or sharing personal information from a child under age 13.","You can tell you’re on a secured U.S. government website before sharing sensitive information by checking two things:
+
+- **The site uses a “.gov” domain** (it belongs to an official U.S. government organization).
+- **The site uses HTTPS**—look for a **lock icon** or **“https://”** in the URL.  
+
+The guidance is: **share sensitive information only on official, secure (HTTPS) .gov websites**.","[NO] You can tell you are on a secured U.S. government website before sharing sensitive information by checking two things.
+[NO] The site uses a "".gov"" domain.
+[NO] A "".gov"" domain means the site belongs to an official U.S. government organization.
+[NO] The site uses HTTPS.
+[NO] You can identify HTTPS by looking for a lock icon or ""https://"" in the URL.
+[NO] You should share sensitive information only on official, secure (HTTPS) .gov websites.","[NO] Caltech/JPL has specific policies in place for children's privacy.
+[NO] The CDC has specific policies in place for children's privacy.
+[NO] For a child under 13 years old, when information and instructions are provided by the specific Web page that collects information about the child, personal information about the child will be destroyed immediately upon completion of its intended purpose.
+[NO] The CDC requires a child's parent or guardian to provide consent before they collect personal information from a child under age 13.
+[NO] The CDC requires a child's parent or guardian to provide consent before they use personal information from a child under age 13.
+[NO] The CDC requires a child's parent or guardian to provide consent before they share personal information from a child under age 13.
+[NO] The CDC deletes immediately any information about a child that they might inadvertently collect.
+[NO] The CDC's digital media channels are not intended to solicit information of any kind from children under age 13.
+[NO] Both Caltech/JPL and the CDC have policies in place to protect children's privacy.
+[NO] Both Caltech/JPL and the CDC require parental consent for collecting personal information from a child under age 13.
+[NO] Both Caltech/JPL and the CDC require parental consent for using personal information from a child under age 13.
+[NO] Both Caltech/JPL and the CDC require parental consent for sharing personal information from a child under age 13.",0.0,0.0,0.0,1.0,,,
+0ef145e49938dfb9b6eefe781d21dca8<::>2,Combined,child privacy,"For children's privacy, both the Caltech/JPL and CDC have specific policies in place. For a child under 13 years old, when information and instructions are provided by the specific Web page that collects information about the child, personal information about your child will be destroyed immediately upon completion of its intended purpose.  Further, the CDC requires a child's parent or guardian to provide consent before they collect, use, or share personal information from a child under age 13. They also delete immediately any information about a child that they might inadvertently collect. Their digital media channels are not intended to solicit information of any kind from children under age 13.  So, both organizations have policies in place to protect children's privacy and require parental consent for collecting, using, or sharing personal information from a child under age 13.","Before sharing sensitive information, confirm the site is an official U.S. government website and uses a secure connection:  
+- Check the domain ends in **.gov** (official government organization).  
+- Look for a **lock icon** or the **https://** prefix in the URL (means you’ve safely connected).  
+Only share sensitive information on **official, secure** websites.","[NO] Before sharing sensitive information, confirm the site is an official U.S. government website.
+[NO] Before sharing sensitive information, confirm the site uses a secure connection.
+[NO] Check that the domain ends in .gov to verify it is an official government organization.
+[NO] Look for a lock icon in the URL to confirm a secure connection.
+[NO] Look for the https:// prefix in the URL to confirm a secure connection.
+[NO] Only share sensitive information on official and secure websites.","[NO] Caltech/JPL has specific policies in place for children's privacy.
+[NO] The CDC has specific policies in place for children's privacy.
+[NO] For a child under 13 years old, when information and instructions are provided by the specific Web page that collects information about the child, personal information about the child will be destroyed immediately upon completion of its intended purpose.
+[NO] The CDC requires a child's parent or guardian to provide consent before they collect personal information from a child under age 13.
+[NO] The CDC requires a child's parent or guardian to provide consent before they use personal information from a child under age 13.
+[NO] The CDC requires a child's parent or guardian to provide consent before they share personal information from a child under age 13.
+[NO] The CDC deletes immediately any information about a child that they might inadvertently collect.
+[NO] The CDC's digital media channels are not intended to solicit information of any kind from children under age 13.
+[NO] Both Caltech/JPL and the CDC have policies in place to protect children's privacy.
+[NO] Both Caltech/JPL and the CDC require parental consent for collecting, using, or sharing personal information from a child under age 13.",0.0,0.0,0.0,0.71,,,
+2cc753bcef23767c18aedad06c4405c4<::>1,Baseline,What should I do if my garbage/recycling/organics collection is missed?,"If you are in City of Piedmont, you should call Republic Services at their toll-free number, (800) 320-8077 before 12 noon for a return trip on the same day.","If your garbage/recycling/organics collection is missed, call **Republic Services at (800) 320-8077 before 12 noon** to request a **return trip on the same day**.","[OK] If your garbage collection is missed, you should call Republic Services at (800) 320-8077 before 12 noon.
+[NO] If your recycling collection is missed, you should call Republic Services at (800) 320-8077 before 12 noon.
+[NO] If your organics collection is missed, you should call Republic Services at (800) 320-8077 before 12 noon.
+[OK] You can request a return trip on the same day by calling Republic Services before 12 noon.","[NO] If you are in City of Piedmont, you should call Republic Services at their toll-free number.
+[OK] The toll-free number for Republic Services is (800) 320-8077.
+[OK] You should call before 12 noon for a return trip on the same day.",0.5,0.67,0.57,1.0,,,
+2cc753bcef23767c18aedad06c4405c4<::>1,Combined,What should I do if my garbage/recycling/organics collection is missed?,"If you are in City of Piedmont, you should call Republic Services at their toll-free number, (800) 320-8077 before 12 noon for a return trip on the same day.",Call Republic Services at (800) 320-8077 before 12 noon for a return trip on the same day.,"[OK] You can call Republic Services at (800) 320-8077.
+[OK] You should call before 12 noon for a return trip on the same day.","[NO] If you are in City of Piedmont, you should call Republic Services at their toll-free number.
+[OK] The toll-free number for Republic Services is (800) 320-8077.
+[OK] You should call before 12 noon for a return trip on the same day.",1.0,0.67,0.8,1.0,,,
+5503c6e98c54d4901332d0f1c6030bd9<::>6,Baseline,wow there are so many I didn't recognize. Are they all by us?,"They are NASA-led initiatives, however, there have been international collaborations with commercial and international partners in the explorations.  For example the Mars Exploration Rovers, Sprit and Opportunity, are jointly developed by NASA and the European Space Agency(ESA).  Mars Reconnaissance Orbiter, Mars Science Laboratory mission and InSight lander also involved contributions from various countries and organizations.","The provided context doesn’t say whether all the items listed (missions/topics/people) are “by us” (i.e., created by NASA or by humans in general). It only includes general NASA page content and unrelated examples (like exoplanet missions such as Kepler and TESS, and general NASA history/resources).
+
+So, based on the context passages you provided, I can’t determine whether “they are all by us.”","[OK] The provided context does not specify whether all the items listed (missions, topics, people) are created by NASA or by humans in general.
+[NO] The provided context only includes general NASA page content and unrelated examples.
+[NO] The unrelated examples include exoplanet missions such as Kepler and TESS.
+[NO] The unrelated examples also include general NASA history and resources.
+[OK] Based on the context passages provided, it is not possible to determine whether all the items are created by NASA or humans in general.","[NO] They are NASA-led initiatives.
+[NO] There have been international collaborations with commercial and international partners in the explorations.
+[NO] The Mars Exploration Rovers, Spirit and Opportunity, were jointly developed by NASA and the European Space Agency (ESA).
+[NO] The Mars Reconnaissance Orbiter involved contributions from various countries and organizations.
+[NO] The Mars Science Laboratory mission involved contributions from various countries and organizations.
+[NO] The InSight lander involved contributions from various countries and organizations.",0.4,0.25,0.31,0.6,,,
+5503c6e98c54d4901332d0f1c6030bd9<::>6,Combined,wow there are so many I didn't recognize. Are they all by us?,"They are NASA-led initiatives, however, there have been international collaborations with commercial and international partners in the explorations.  For example the Mars Exploration Rovers, Sprit and Opportunity, are jointly developed by NASA and the European Space Agency(ESA).  Mars Reconnaissance Orbiter, Mars Science Laboratory mission and InSight lander also involved contributions from various countries and organizations.","The provided context doesn’t mention MOXIE or any “others in the past” list, and it doesn’t answer whether “they are all by us.” It only states that observations have confirmed thousands of planets beyond our solar system, that our galaxy likely holds trillions, and that so far there is no evidence of life beyond Earth.","[OK] The provided context does not mention MOXIE.
+[OK] The provided context does not mention any ""others in the past"" list.
+[OK] The provided context does not answer whether ""they are all by us.""
+[NO] The provided context states that observations have confirmed thousands of planets beyond our solar system.
+[NO] The provided context states that our galaxy likely holds trillions of planets.
+[NO] So far, there is no evidence of life beyond Earth.","[NO] They are NASA-led initiatives.
+[NO] There have been international collaborations with commercial and international partners in the explorations.
+[NO] The Mars Exploration Rovers, Spirit and Opportunity, were jointly developed by NASA and the European Space Agency (ESA).
+[NO] The Mars Reconnaissance Orbiter involved contributions from various countries and organizations.
+[NO] The Mars Science Laboratory mission involved contributions from various countries and organizations.
+[NO] The InSight lander involved contributions from various countries and organizations.",0.5,0.33,0.4,0.83,,,
+5600fe1c05a1fc415416d9dee6347000<::>8,Baseline,why is it safe,"It is safe to look at the Moon during a lunar eclipse because the Moon does not produce its own light, but instead reflects sunlight.","It’s safe to look at a **lunar eclipse** because, unlike a solar eclipse, you’re not looking at the Sun. During a lunar eclipse, **Earth’s shadow covers the Moon**, and **it is always safe to look at a lunar eclipse with the naked eye** (and you can also look through a telescope).","[OK] It is safe to look at a lunar eclipse.
+[NO] A lunar eclipse is different from a solar eclipse because you are not looking at the Sun during a lunar eclipse.
+[NO] During a lunar eclipse, Earth's shadow covers the Moon.
+[NO] It is always safe to look at a lunar eclipse with the naked eye.
+[NO] You can look at a lunar eclipse through a telescope.","[OK] It is safe to look at the Moon during a lunar eclipse.
+[NO] The Moon does not produce its own light.
+[NO] The Moon reflects sunlight.",0.2,0.33,0.25,1.0,,,
+5600fe1c05a1fc415416d9dee6347000<::>8,Combined,why is it safe,"It is safe to look at the Moon during a lunar eclipse because the Moon does not produce its own light, but instead reflects sunlight.","It’s safe to look at a lunar eclipse because, unlike a solar eclipse, “it is always safe to look at a lunar eclipse with the naked eye.” The Moon is the object being viewed, not the Sun, so you don’t need eclipse glasses or solar filters.","[OK] It is safe to look at a lunar eclipse with the naked eye.
+[NO] A lunar eclipse is different from a solar eclipse.
+[OK] During a lunar eclipse, the Moon is the object being viewed.
+[NO] During a solar eclipse, the Sun is the object being viewed.
+[OK] You do not need eclipse glasses or solar filters to look at a lunar eclipse.","[OK] It is safe to look at the Moon during a lunar eclipse.
+[NO] The Moon does not produce its own light.
+[NO] The Moon reflects sunlight.",0.6,0.6,0.6,1.0,,,
+5b2404d71f9ff7edabddb3b1a8b329e7<::>8,Baseline,Is climate change the cause of natural disasters?,"Climate change can contribute to the intensity and frequency of some natural disasters, but it is not the sole cause. Global warming can be influenced by natural causes such as volcanic activity and changes in Earth's orbit over millions of years. However, these natural factors cannot explain the recent rapid warming. Climate change refers to long-term changes in the average weather patterns, including physical effects such as heat waves, sea level rise, heavy rainfall, floods, and droughts. While some climate change is naturally occurring, today's climate changes rapidly due to human activities such as greenhouse gas emissions from burning fossil fuels, deforestation, and wetland loss. These human activities are causing the Earth's average temperature to increase faster than it would naturally. The Greenhouse Effect, Greenhouse Gases, and Global Warming are all interconnected in this process.","The provided context does not directly answer whether climate change is the cause of natural disasters in general.
+
+However, it does state that climate change can lead to impacts such as **more intense storm activities, floods and droughts**, and that **global warming** can make **storms, floods, and droughts generally more severe** and can increase hurricane intensity due to **warmer ocean surface temperatures**.","[OK] The provided context does not directly answer whether climate change is the cause of natural disasters in general.
+[NO] The context states that climate change can lead to more intense storm activities.
+[OK] The context states that climate change can lead to floods.
+[OK] The context states that climate change can lead to droughts.
+[NO] Global warming can make storms generally more severe.
+[NO] Global warming can make floods generally more severe.
+[NO] Global warming can make droughts generally more severe.
+[NO] Global warming can increase hurricane intensity.
+[NO] The increase in hurricane intensity is due to warmer ocean surface temperatures.","[OK] Climate change can contribute to the intensity of some natural disasters.
+[NO] Climate change can contribute to the frequency of some natural disasters.
+[NO] Climate change is not the sole cause of some natural disasters.
+[NO] Global warming can be influenced by natural causes such as volcanic activity.
+[NO] Global warming can be influenced by natural causes such as changes in Earth's orbit over millions of years.
+[NO] Natural factors such as volcanic activity and changes in Earth's orbit cannot explain the recent rapid warming.
+[NO] Climate change refers to long-term changes in average weather patterns.
+[NO] Climate change includes physical effects such as heat waves.
+[NO] Climate change includes physical effects such as sea level rise.
+[OK] Climate change includes physical effects such as heavy rainfall.
+[OK] Climate change includes physical effects such as floods.
+[OK] Climate change includes physical effects such as droughts.
+[NO] Some climate change is naturally occurring.
+[NO] Today's climate changes rapidly due to human activities.
+[NO] Human activities that cause rapid climate change include greenhouse gas emissions from burning fossil fuels.
+[NO] Human activities that cause rapid climate change include deforestation.
+[NO] Human activities that cause rapid climate change include wetland loss.
+[NO] Human activities are causing the Earth's average temperature to increase faster than it would naturally.
+[NO] The Greenhouse Effect, Greenhouse Gases, and Global Warming are interconnected in the climate change process.",0.33,0.17,0.22,1.0,,,
+5b2404d71f9ff7edabddb3b1a8b329e7<::>8,Combined,Is climate change the cause of natural disasters?,"Climate change can contribute to the intensity and frequency of some natural disasters, but it is not the sole cause. Global warming can be influenced by natural causes such as volcanic activity and changes in Earth's orbit over millions of years. However, these natural factors cannot explain the recent rapid warming. Climate change refers to long-term changes in the average weather patterns, including physical effects such as heat waves, sea level rise, heavy rainfall, floods, and droughts. While some climate change is naturally occurring, today's climate changes rapidly due to human activities such as greenhouse gas emissions from burning fossil fuels, deforestation, and wetland loss. These human activities are causing the Earth's average temperature to increase faster than it would naturally. The Greenhouse Effect, Greenhouse Gases, and Global Warming are all interconnected in this process.","Climate change can contribute to natural disasters. The context explains that climate change involves long-term changes in average weather patterns, including effects like heavy rainfall and floods, and that increased warming of the oceans and atmosphere changes how heat and moisture are moved—altering precipitation, temperatures, and storms. It also notes that climate change can include more intense storm activities and shifts in sea level, which can increase disaster impacts.","[OK] Climate change can contribute to natural disasters.
+[OK] Climate change involves long-term changes in average weather patterns.
+[OK] Climate change includes effects like heavy rainfall and floods.
+[NO] Increased warming of the oceans and atmosphere changes how heat and moisture are moved.
+[NO] Changes in heat and moisture movement alter precipitation, temperatures, and storms.
+[OK] Climate change can include more intense storm activities.
+[OK] Climate change can include shifts in sea level.
+[NO] More intense storm activities and shifts in sea level can increase disaster impacts.","[OK] Climate change can contribute to the intensity of some natural disasters.
+[NO] Climate change can contribute to the frequency of some natural disasters.
+[NO] Climate change is not the sole cause of some natural disasters.
+[NO] Global warming can be influenced by natural causes such as volcanic activity.
+[NO] Global warming can be influenced by natural causes such as changes in Earth's orbit over millions of years.
+[NO] Natural factors such as volcanic activity and changes in Earth's orbit cannot explain the recent rapid warming.
+[OK] Climate change refers to long-term changes in average weather patterns.
+[NO] Climate change includes physical effects such as heat waves.
+[OK] Climate change includes physical effects such as sea level rise.
+[OK] Climate change includes physical effects such as heavy rainfall.
+[OK] Climate change includes physical effects such as floods.
+[NO] Climate change includes physical effects such as droughts.
+[NO] Some climate change is naturally occurring.
+[NO] Today's climate changes rapidly due to human activities.
+[NO] Human activities that cause rapid climate change include greenhouse gas emissions from burning fossil fuels.
+[NO] Human activities that cause rapid climate change include deforestation.
+[NO] Human activities that cause rapid climate change include wetland loss.
+[NO] Human activities are causing the Earth's average temperature to increase faster than it would naturally.
+[NO] The Greenhouse Effect, Greenhouse Gases, and Global Warming are interconnected in the climate change process.",0.62,0.26,0.37,0.88,,,
+72ba19c38518da1fc894fc638a2802f7<::>4,Baseline,sprite the sprite of bevarage?,It seems like there might be a typo in your question.  A Mars fetch rover sprite is a sample collection tube.,"The provided context doesn’t include anything about a “beverage” sprite or how to create/sprite one in Scratch.
+
+If you’re asking about the Mars Sample Collection Video Game setup, the context only mentions uploading specific sprites (the Mars fetch rover sprite and the Mars sample collection tube sprite) and creating a backdrop (Jezero Crater). It doesn’t cover adding a beverage sprite.
+
+So: **I can’t answer how to sprite “beverage” using only the provided passages.**","[OK] The provided context does not include anything about a beverage sprite.
+[OK] The provided context does not include information on how to create a beverage sprite in Scratch.
+[NO] The context mentions uploading specific sprites: the Mars fetch rover sprite and the Mars sample collection tube sprite.
+[NO] The context mentions creating a backdrop called Jezero Crater.
+[OK] The context does not cover adding a beverage sprite.
+[OK] It is not possible to answer how to sprite a beverage using only the provided passages.","[NO] There might be a typo in your question.
+[NO] A Mars fetch rover sprite is a sample collection tube.",0.67,0.67,0.67,1.0,,,
+72ba19c38518da1fc894fc638a2802f7<::>4,Combined,sprite the sprite of bevarage?,It seems like there might be a typo in your question.  A Mars fetch rover sprite is a sample collection tube.,"Add a scoring system by increasing the score when the rover collects a sample tube. Use your game code to add “one or more points” per tube collected, and keep a running total as the game progresses. The provided Mars game context doesn’t specify an exact scoring formula, so you choose the point values and how they’re summed.","[NO] Add a scoring system that increases the score when the rover collects a sample tube.
+[NO] Use your game code to add one or more points per tube collected.
+[NO] Keep a running total of the score as the game progresses.
+[OK] The provided Mars game context does not specify an exact scoring formula.
+[NO] You choose the point values and how they are summed.","[NO] There might be a typo in your question.
+[NO] A Mars fetch rover sprite is a sample collection tube.",0.2,0.33,0.25,0.2,,,
+af57ff6995d958858fc451e606fdb54d<::>8,Baseline,must be in-state business to participate?,"No, the Office of General Services (OGS) centralized statewide contracts are available for use by eligible users both in and outside of New York State. However, certain programs, such as the Service-Disabled Veteran-Owned Business (SDVOB) program, may have specific requirements related to New York State residency or business operations.","The provided context does **not** say that a business must be an in-state (California) business to participate.
+
+What it *does* cover is:
+- **Withholding / “doing business” in California**: California taxes income derived from business activity within the state, and withholding depends on whether a nonresident payee is “doing business in California” and earning California-source income (FTB Pub. 1017).
+- **Employer registration**: businesses must register as employers when they pay wages above certain thresholds, but the context doesn’t state an in-state requirement (Employer registration pages).
+- **EBT retailer participation**: the context discusses rules for EBT processing and permits when ownership changes, but it does not mention an in-state business requirement (Businesses FAQ).
+
+If you tell me which specific program/opportunity you mean by “participate” (e.g., employer registration, EBT, vendor contracting, etc.), I can check the context again for that exact requirement.","[OK] The provided context does not say that a business must be an in-state (California) business to participate.
+[NO] California taxes income derived from business activity within the state.
+[NO] Withholding depends on whether a nonresident payee is doing business in California and earning California-source income.
+[NO] Businesses must register as employers when they pay wages above certain thresholds.
+[OK] The context does not state an in-state requirement for employer registration.
+[NO] The context discusses rules for EBT processing and permits when ownership changes.
+[OK] The context does not mention an in-state business requirement for EBT retailer participation.
+[OK] If you specify which program or opportunity you mean by participate, the context can be checked again for that exact requirement.","[NO] The Office of General Services (OGS) centralized statewide contracts are available for use by eligible users in New York State.
+[NO] The Office of General Services (OGS) centralized statewide contracts are available for use by eligible users outside of New York State.
+[NO] Certain programs, such as the Service-Disabled Veteran-Owned Business (SDVOB) program, may have specific requirements related to New York State residency.
+[NO] Certain programs, such as the Service-Disabled Veteran-Owned Business (SDVOB) program, may have specific requirements related to New York State business operations.",0.5,0.5,0.5,1.0,,,
+af57ff6995d958858fc451e606fdb54d<::>8,Combined,must be in-state business to participate?,"No, the Office of General Services (OGS) centralized statewide contracts are available for use by eligible users both in and outside of New York State. However, certain programs, such as the Service-Disabled Veteran-Owned Business (SDVOB) program, may have specific requirements related to New York State residency or business operations.","The provided context does not state whether a business must be “in-state” to participate. It only covers (a) California withholding rules for corporations (FTB Publication 1017) and (b) employer registration/payroll tax thresholds, plus (c) SNAP/EBT participation rules that do not mention an in-state requirement.","[OK] The provided context does not state whether a business must be in-state to participate.
+[NO] The provided context covers California withholding rules for corporations as described in FTB Publication 1017.
+[NO] The provided context covers employer registration and payroll tax thresholds.
+[NO] The provided context covers SNAP/EBT participation rules.
+[NO] The SNAP/EBT participation rules do not mention an in-state requirement.","[NO] The Office of General Services (OGS) centralized statewide contracts are available for use by eligible users in New York State.
+[NO] The Office of General Services (OGS) centralized statewide contracts are available for use by eligible users outside of New York State.
+[NO] Certain programs, such as the Service-Disabled Veteran-Owned Business (SDVOB) program, may have specific requirements related to New York State residency.
+[NO] Certain programs, such as the Service-Disabled Veteran-Owned Business (SDVOB) program, may have specific requirements related to New York State business operations.",0.2,0.2,0.2,1.0,,,
+ccdfb6b6f98c55047ae81b705104dbd6<::>7,Baseline,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,"NASA's Discovery Program is a series of cost-effective missions that aim to answer critical questions in solar system science. The program supports the development and implementation of over 20 missions and instruments. The selected investigations will be managed by the Planetary Missions Program Office at NASA's Marshall Space Flight Center in Huntsville, Alabama. The goals of the program are to provide frequent opportunities for principal investigator-led investigations in planetary sciences that can be accomplished under a not-to-exceed cost cap. Yes, Deep Impact Mission is part of NASA Discovery program.","**NASA Discovery Program:**  
+It is a NASA program whose primary goal is to conduct a series of **frequent, highly focused, cost-effective solar system science missions**. It emphasizes **small spacecraft with focused science goals** that can be built in **36 months or less** and for relatively low cost (originally under **$190M** development and **$299M** total mission cost). It also aims to encourage new technologies and broader participation in mission development.
+
+**Is Deep Impact part of the Discovery Program?**  
+Yes. The provided context lists **Deep Impact** as a **Discovery class mission** (mission to **Comet Tempel 1**, launched **12 January 2005**).","[OK] The NASA Discovery Program is a NASA program.
+[OK] The primary goal of the NASA Discovery Program is to conduct a series of frequent, highly focused, cost-effective solar system science missions.
+[NO] The NASA Discovery Program emphasizes small spacecraft with focused science goals.
+[NO] The spacecraft in the NASA Discovery Program can be built in 36 months or less.
+[OK] The NASA Discovery Program aims for relatively low cost missions.
+[NO] The original development cost limit for missions in the NASA Discovery Program was under $190 million.
+[NO] The original total mission cost limit for missions in the NASA Discovery Program was under $299 million.
+[NO] The NASA Discovery Program aims to encourage new technologies.
+[OK] The NASA Discovery Program aims to encourage broader participation in mission development.
+[OK] Deep Impact is part of the NASA Discovery Program.
+[OK] Deep Impact is a Discovery class mission.
+[NO] Deep Impact was a mission to Comet Tempel 1.
+[NO] Deep Impact was launched on 12 January 2005.","[OK] NASA's Discovery Program is a series of cost-effective missions.
+[NO] The Discovery Program aims to answer critical questions in solar system science.
+[NO] The Discovery Program supports the development and implementation of over 20 missions and instruments.
+[NO] The selected investigations in the Discovery Program are managed by the Planetary Missions Program Office at NASA's Marshall Space Flight Center in Huntsville, Alabama.
+[NO] The goals of the Discovery Program include providing frequent opportunities for principal investigator-led investigations in planetary sciences.
+[OK] The investigations in the Discovery Program can be accomplished under a not-to-exceed cost cap.
+[OK] The Deep Impact Mission is part of NASA's Discovery Program.",0.46,0.6,0.52,1.0,,,
+ccdfb6b6f98c55047ae81b705104dbd6<::>7,Combined,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,"NASA's Discovery Program is a series of cost-effective missions that aim to answer critical questions in solar system science. The program supports the development and implementation of over 20 missions and instruments. The selected investigations will be managed by the Planetary Missions Program Office at NASA's Marshall Space Flight Center in Huntsville, Alabama. The goals of the program are to provide frequent opportunities for principal investigator-led investigations in planetary sciences that can be accomplished under a not-to-exceed cost cap. Yes, Deep Impact Mission is part of NASA Discovery program.","NASA’s Discovery Program is a set of frequent, highly focused, cost-effective solar system science missions. It uses small spacecraft with focused science goals that can be built in 36 months or less, with development costs under $190M and total mission cost under $299M (as originally defined).
+
+Yes—Deep Impact is listed as a Discovery Program mission (“Deep Impact - Mission to Comet Tempel 1 (launched 12 January 2005)”).","[OK] NASA’s Discovery Program is a set of frequent solar system science missions.
+[NO] NASA’s Discovery Program is a set of highly focused solar system science missions.
+[OK] NASA’s Discovery Program is a set of cost-effective solar system science missions.
+[NO] The Discovery Program uses small spacecraft with focused science goals.
+[NO] The spacecraft in the Discovery Program can be built in 36 months or less.
+[NO] The development costs for Discovery Program missions are under $190 million.
+[NO] The total mission cost for Discovery Program missions is under $299 million as originally defined.
+[OK] Deep Impact is a Discovery Program mission.
+[NO] Deep Impact was a mission to Comet Tempel 1.
+[NO] Deep Impact was launched on 12 January 2005.","[OK] NASA's Discovery Program is a series of cost-effective missions.
+[NO] The Discovery Program aims to answer critical questions in solar system science.
+[NO] The Discovery Program supports the development and implementation of over 20 missions and instruments.
+[NO] The selected investigations in the Discovery Program are managed by the Planetary Missions Program Office at NASA's Marshall Space Flight Center in Huntsville, Alabama.
+[NO] The goals of the Discovery Program include providing frequent opportunities for principal investigator-led investigations in planetary sciences.
+[OK] The investigations in the Discovery Program can be accomplished under a not-to-exceed cost cap.
+[OK] The Deep Impact Mission is part of NASA's Discovery Program.",0.3,0.43,0.35,1.0,,,
+d2432696b32af73cf3dabd7090997afb<::>1,Baseline,Name two spacecraft that were sent to explore Jupiter.,"Previous missions were sent to Jupiter like Pioneer 10 and 11 and also Voyager 1 and 2 in the 1970s. But  the two spacecrafts most famous to reach Jupiter were Juno and Galileo. Juno began its circuitous five-year journey to Jupiter on August 5  of 2011 and it was launched from Cape Canaveral Air Force Station Florida’s Atlantic coast . Juno mission completed its 50th close pass by Jupiter since its arrived at the big planet in 2016.  Galileo mission to Jupiter had been authorized in October 1977 for a 1982 space shuttle launch, but there were some delays to the shuttle program, confusion over the development of an appropriate upper stage to send the probe on its way out of Earth orbit, and finally the loss of space shuttle Challenger and its crew in 1986, postponed Galileo's launch until 1989. Galileo deployment from space shuttle Atlantis, October 1989.",Two spacecraft sent to explore Jupiter are **Galileo** and **Juno**.,"[OK] Two spacecraft were sent to explore Jupiter.
+[NO] The names of the two spacecraft sent to explore Jupiter are Galileo and Juno.","[NO] Previous missions were sent to Jupiter in the 1970s.
+[NO] Pioneer 10 and Pioneer 11 were sent to Jupiter.
+[NO] Voyager 1 and Voyager 2 were sent to Jupiter.
+[NO] The two spacecraft most famous to reach Jupiter were Juno and Galileo.
+[NO] Juno began its journey to Jupiter on August 5, 2011.
+[NO] Juno's journey to Jupiter took five years.
+[NO] Juno was launched from Cape Canaveral Air Force Station on Florida's Atlantic coast.
+[NO] The Juno mission completed its 50th close pass by Jupiter since arriving in 2016.
+[NO] The Galileo mission to Jupiter was authorized in October 1977.
+[NO] The Galileo mission was originally planned for a 1982 space shuttle launch.
+[NO] There were delays to the space shuttle program that postponed Galileo's launch.
+[NO] There was confusion over the development of an appropriate upper stage to send Galileo out of Earth orbit.
+[NO] The loss of space shuttle Challenger and its crew in 1986 postponed Galileo's launch.
+[NO] Galileo's launch was postponed until 1989.
+[NO] Galileo was deployed from space shuttle Atlantis in October 1989.",0.5,0.06,0.11,0.5,,,
+d2432696b32af73cf3dabd7090997afb<::>1,Combined,Name two spacecraft that were sent to explore Jupiter.,"Previous missions were sent to Jupiter like Pioneer 10 and 11 and also Voyager 1 and 2 in the 1970s. But  the two spacecrafts most famous to reach Jupiter were Juno and Galileo. Juno began its circuitous five-year journey to Jupiter on August 5  of 2011 and it was launched from Cape Canaveral Air Force Station Florida’s Atlantic coast . Juno mission completed its 50th close pass by Jupiter since its arrived at the big planet in 2016.  Galileo mission to Jupiter had been authorized in October 1977 for a 1982 space shuttle launch, but there were some delays to the shuttle program, confusion over the development of an appropriate upper stage to send the probe on its way out of Earth orbit, and finally the loss of space shuttle Challenger and its crew in 1986, postponed Galileo's launch until 1989. Galileo deployment from space shuttle Atlantis, October 1989.",Galileo and Juno.,"[OK] Galileo is a subject mentioned.
+[OK] Juno is a subject mentioned.","[NO] Previous missions were sent to Jupiter in the 1970s.
+[NO] Pioneer 10 and Pioneer 11 were sent to Jupiter.
+[NO] Voyager 1 and Voyager 2 were sent to Jupiter.
+[NO] The two most famous spacecraft to reach Jupiter were Juno and Galileo.
+[NO] Juno began its journey to Jupiter on August 5, 2011.
+[NO] Juno's journey to Jupiter lasted five years.
+[NO] Juno was launched from Cape Canaveral Air Force Station on Florida's Atlantic coast.
+[NO] The Juno mission completed its 50th close pass by Jupiter since arriving in 2016.
+[NO] The Galileo mission to Jupiter was authorized in October 1977.
+[NO] The Galileo mission was originally planned for a 1982 space shuttle launch.
+[NO] There were delays in the space shuttle program that affected Galileo's launch.
+[NO] There was confusion over the development of an appropriate upper stage to send Galileo out of Earth orbit.
+[NO] The loss of space shuttle Challenger and its crew in 1986 postponed Galileo's launch.
+[NO] Galileo's launch was postponed until 1989.
+[NO] Galileo was deployed from space shuttle Atlantis in October 1989.",1.0,0.12,0.21,1.0,,,
+d44c3196b3d832f85160b5b4fbee1332<::>1,Baseline,What is the Web extension for federal government websites and how do we ensure the site is secure?,"The web extension for federal government websites often ends in .gov or .mil. To ensure the site is secure, look for the ""https://"" in the website's URL. This indicates that you are connected to the official website and any information you provide will be encrypted and transmitted securely.","Federal government websites use the **.gov** extension. We ensure the site is secure by using **HTTPS** (shown by a lock icon or `https://`), which means you’ve safely connected to the site.","[OK] Federal government websites use the .gov extension.
+[OK] Federal government websites use HTTPS to ensure the site is secure.
+[NO] HTTPS is shown by a lock icon or https:// in the browser.
+[OK] Using HTTPS means you have safely connected to the site.","[NO] The web extension for federal government websites often ends in .gov or .mil.
+[OK] To ensure the site is secure, look for ""https://"" in the website's URL.
+[NO] ""https://"" indicates that you are connected to the official website.
+[NO] ""https://"" indicates that any information you provide will be encrypted and transmitted securely.",0.75,0.5,0.6,1.0,,,
+d44c3196b3d832f85160b5b4fbee1332<::>1,Combined,What is the Web extension for federal government websites and how do we ensure the site is secure?,"The web extension for federal government websites often ends in .gov or .mil. To ensure the site is secure, look for the ""https://"" in the website's URL. This indicates that you are connected to the official website and any information you provide will be encrypted and transmitted securely.","Federal government websites use the “.gov” web extension. To ensure the site is secure, use HTTPS (a lock icon or “https://”), which indicates you’ve safely connected and that sensitive information should be shared only on official, secure websites.","[OK] Federal government websites use the "".gov"" web extension.
+[OK] To ensure a site is secure, use HTTPS.
+[NO] HTTPS is indicated by a lock icon or ""https://"" in the web address.
+[OK] HTTPS indicates you have safely connected to the website.
+[NO] Sensitive information should be shared only on official, secure websites.","[NO] The web extension for federal government websites often ends in .gov or .mil.
+[OK] To ensure the site is secure, look for ""https://"" in the website's URL.
+[NO] ""https://"" indicates that you are connected to the official website.
+[NO] ""https://"" indicates that any information you provide will be encrypted and transmitted securely.",0.6,0.5,0.55,1.0,,,

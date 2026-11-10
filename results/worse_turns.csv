@@ -1,0 +1,74 @@
+config,task_id,question,answerability,baseline_f1,config_f1,delta_f1,baseline_recall_at_k,config_recall_at_k,truncated,baseline_words,config_words,cause
+Combined (pre-registered),2cc753bcef23767c18aedad06c4405c4<::>7,how do I recycle paint?,ANSWERABLE,1.000,0.000,-1.000,1.000,0.000,True,34,131,gold passage lost + truncated
+Combined (pre-registered),72ba19c38518da1fc894fc638a2802f7<::>4,sprite the sprite of bevarage?,ANSWERABLE,0.667,0.250,-0.417,0.333,0.333,False,73,58,detail dropped
+Combined (pre-registered),f0d2873b877409f61da7dbdddd22d279<::>5,Could you please provide the procedures for a child support case?,ANSWERABLE,0.500,0.167,-0.333,0.000,0.000,True,578,144,truncated
+Combined (pre-registered),af57ff6995d958858fc451e606fdb54d<::>8,must be in-state business to participate?,ANSWERABLE,0.500,0.200,-0.300,0.000,0.000,False,140,44,detail dropped
+Combined (pre-registered),fc3e765d7ffc28ffc7ee7ea38fd3c73a<::>7,Discrimination,ANSWERABLE,0.429,0.143,-0.286,0.000,0.000,False,74,102,other (run-to-run variation / judge)
+Combined (pre-registered),251e29286cef45d899d7889e94ae25d5<::>7,Is the covid vaccine safe? any side-effect?,ANSWERABLE,0.571,0.300,-0.271,0.500,0.333,False,121,91,gold passage lost + detail dropped
+Combined (pre-registered),f0d2873b877409f61da7dbdddd22d279<::>6,Is a jail sentence given for a child support conviction?,PARTIAL,0.333,0.143,-0.190,0.500,0.000,False,63,40,gold passage lost + detail dropped
+Combined (pre-registered),ccdfb6b6f98c55047ae81b705104dbd6<::>7,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,ANSWERABLE,0.522,0.353,-0.169,0.750,0.250,False,98,67,gold passage lost + detail dropped
+Combined (pre-registered),d44c3196b3d832f85160b5b4fbee1332<::>5,I want to understand the definition of personal information we are talking about here,ANSWERABLE,1.000,0.842,-0.158,0.667,0.667,False,76,109,other (run-to-run variation / judge)
+Combined (pre-registered),0ef145e49938dfb9b6eefe781d21dca8<::>3,Raising protection to 18 yr old?,PARTIAL,0.154,0.000,-0.154,0.000,0.000,False,116,83,detail dropped
+Combined (pre-registered),af57ff6995d958858fc451e606fdb54d<::>4,Of course VA is federal !!,ANSWERABLE,0.500,0.400,-0.100,0.000,0.000,False,81,69,other (run-to-run variation / judge)
+Combined (pre-registered),251e29286cef45d899d7889e94ae25d5<::>3,I am not sure what to do if my covid test result is positive,ANSWERABLE,0.632,0.571,-0.060,0.667,0.667,False,92,66,detail dropped
+Combined (pre-registered),d44c3196b3d832f85160b5b4fbee1332<::>1,What is the Web extension for federal government websites and how do we ensure the site is secure?,ANSWERABLE,0.600,0.545,-0.055,0.000,0.000,False,31,38,other (run-to-run variation / judge)
+Combined (pre-registered),d7b4f863baa92fd08c1db2b1a95170dd<::>8,"Apart from gravity, what other factor is responsible for holding the universe together?",ANSWERABLE,0.667,0.615,-0.051,1.000,1.000,False,27,21,detail dropped
+Combined (pre-registered),5600fe1c05a1fc415416d9dee6347000<::>1,Name the sources of light pollution that affect skywatching.,ANSWERABLE,0.714,0.667,-0.048,1.000,1.000,False,26,39,other (run-to-run variation / judge)
+Combined + reranker,fc3e765d7ffc28ffc7ee7ea38fd3c73a<::>7,Discrimination,ANSWERABLE,0.429,0.000,-0.429,0.000,0.000,False,74,56,detail dropped
+Combined + reranker,f0d2873b877409f61da7dbdddd22d279<::>5,Could you please provide the procedures for a child support case?,ANSWERABLE,0.500,0.074,-0.426,0.000,0.000,True,578,152,truncated
+Combined + reranker,251e29286cef45d899d7889e94ae25d5<::>3,I am not sure what to do if my covid test result is positive,ANSWERABLE,0.632,0.235,-0.396,0.667,0.333,False,92,104,gold passage lost
+Combined + reranker,72ba19c38518da1fc894fc638a2802f7<::>4,sprite the sprite of bevarage?,ANSWERABLE,0.667,0.364,-0.303,0.333,0.333,False,73,38,detail dropped
+Combined + reranker,af57ff6995d958858fc451e606fdb54d<::>4,Of course VA is federal !!,ANSWERABLE,0.500,0.250,-0.250,0.000,0.000,False,81,40,detail dropped
+Combined + reranker,0ef145e49938dfb9b6eefe781d21dca8<::>3,Raising protection to 18 yr old?,PARTIAL,0.154,0.000,-0.154,0.000,0.000,False,116,42,detail dropped
+Combined + reranker,af57ff6995d958858fc451e606fdb54d<::>8,must be in-state business to participate?,ANSWERABLE,0.500,0.364,-0.136,0.000,0.000,False,140,46,detail dropped
+Combined + reranker,d7b4f863baa92fd08c1db2b1a95170dd<::>8,"Apart from gravity, what other factor is responsible for holding the universe together?",ANSWERABLE,0.667,0.545,-0.121,1.000,1.000,False,27,27,other (run-to-run variation / judge)
+Combined + reranker,251e29286cef45d899d7889e94ae25d5<::>7,Is the covid vaccine safe? any side-effect?,ANSWERABLE,0.571,0.455,-0.117,0.500,0.167,False,121,99,gold passage lost + detail dropped
+Combined + reranker,0ef145e49938dfb9b6eefe781d21dca8<::>1,How do I know I am on a secured government website before sharing sensitive information?,ANSWERABLE,0.667,0.600,-0.067,0.333,0.333,False,46,47,other (run-to-run variation / judge)
+Combined + reranker,5503c6e98c54d4901332d0f1c6030bd9<::>1,What are the MOXIE instrument's primary attributes and functionalities?,ANSWERABLE,0.400,0.348,-0.052,1.000,0.400,False,193,94,gold passage lost + detail dropped
+Combined + reranker,f0d2873b877409f61da7dbdddd22d279<::>6,Is a jail sentence given for a child support conviction?,PARTIAL,0.333,0.286,-0.048,0.500,0.500,False,63,51,detail dropped
+Combined + reranker,ccdfb6b6f98c55047ae81b705104dbd6<::>7,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,ANSWERABLE,0.522,0.500,-0.022,0.750,0.500,False,98,64,gold passage lost + detail dropped
+Length only,f0d2873b877409f61da7dbdddd22d279<::>5,Could you please provide the procedures for a child support case?,ANSWERABLE,0.500,0.000,-0.500,0.000,0.000,True,578,145,truncated
+Length only,af57ff6995d958858fc451e606fdb54d<::>8,must be in-state business to participate?,ANSWERABLE,0.500,0.200,-0.300,0.000,0.000,False,140,61,detail dropped
+Length only,fc3e765d7ffc28ffc7ee7ea38fd3c73a<::>7,Discrimination,ANSWERABLE,0.429,0.154,-0.275,0.000,0.000,False,74,65,detail dropped
+Length only,d44c3196b3d832f85160b5b4fbee1332<::>5,I want to understand the definition of personal information we are talking about here,ANSWERABLE,1.000,0.824,-0.176,0.667,0.667,False,76,112,other (run-to-run variation / judge)
+Length only,d44c3196b3d832f85160b5b4fbee1332<::>1,What is the Web extension for federal government websites and how do we ensure the site is secure?,ANSWERABLE,0.600,0.444,-0.156,0.000,0.000,False,31,36,other (run-to-run variation / judge)
+Length only,0ef145e49938dfb9b6eefe781d21dca8<::>3,Raising protection to 18 yr old?,PARTIAL,0.154,0.000,-0.154,0.000,0.000,False,116,88,detail dropped
+Length only,f0d2873b877409f61da7dbdddd22d279<::>6,Is a jail sentence given for a child support conviction?,PARTIAL,0.333,0.200,-0.133,0.500,0.500,False,63,44,detail dropped
+Length only,5503c6e98c54d4901332d0f1c6030bd9<::>6,wow there are so many I didn't recognize. Are they all by us?,ANSWERABLE,0.308,0.182,-0.126,0.000,0.000,False,62,35,detail dropped
+Length only,251e29286cef45d899d7889e94ae25d5<::>3,I am not sure what to do if my covid test result is positive,ANSWERABLE,0.632,0.526,-0.105,0.667,0.667,False,92,75,detail dropped
+Length only,ccdfb6b6f98c55047ae81b705104dbd6<::>7,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,ANSWERABLE,0.522,0.421,-0.101,0.750,0.750,False,98,88,detail dropped
+Length only,72ba19c38518da1fc894fc638a2802f7<::>5,"Of course I knew it!  just teasing, sorry.  How to scripts sprite?",ANSWERABLE,0.400,0.316,-0.084,0.250,0.250,False,90,64,detail dropped
+Length only,251e29286cef45d899d7889e94ae25d5<::>4,can you clarify the treatments here? Do I take medicine?,ANSWERABLE,0.174,0.100,-0.074,0.333,0.333,False,242,111,detail dropped
+Length only,5600fe1c05a1fc415416d9dee6347000<::>5,what do I need for an eclipse?,ANSWERABLE,0.300,0.250,-0.050,0.333,0.333,False,84,92,other (run-to-run variation / judge)
+Length only,5600fe1c05a1fc415416d9dee6347000<::>8,why is it safe,ANSWERABLE,0.250,0.222,-0.028,0.000,0.000,False,51,62,other (run-to-run variation / judge)
+Length only,5503c6e98c54d4901332d0f1c6030bd9<::>1,What are the MOXIE instrument's primary attributes and functionalities?,ANSWERABLE,0.400,0.385,-0.015,1.000,1.000,False,193,104,detail dropped
+Top-k + reranker only,251e29286cef45d899d7889e94ae25d5<::>3,I am not sure what to do if my covid test result is positive,ANSWERABLE,0.632,0.300,-0.332,0.667,0.333,False,92,156,gold passage lost
+Top-k + reranker only,72ba19c38518da1fc894fc638a2802f7<::>4,sprite the sprite of bevarage?,ANSWERABLE,0.667,0.364,-0.303,0.333,0.333,False,73,88,other (run-to-run variation / judge)
+Top-k + reranker only,0ef145e49938dfb9b6eefe781d21dca8<::>1,How do I know I am on a secured government website before sharing sensitive information?,ANSWERABLE,0.667,0.400,-0.267,0.333,0.333,False,46,66,other (run-to-run variation / judge)
+Top-k + reranker only,2cc753bcef23767c18aedad06c4405c4<::>1,What should I do if my garbage/recycling/organics collection is missed?,ANSWERABLE,0.571,0.333,-0.238,1.000,1.000,False,24,24,other (run-to-run variation / judge)
+Top-k + reranker only,af57ff6995d958858fc451e606fdb54d<::>8,must be in-state business to participate?,ANSWERABLE,0.500,0.308,-0.192,0.000,0.000,False,140,69,detail dropped
+Top-k + reranker only,251e29286cef45d899d7889e94ae25d5<::>4,can you clarify the treatments here? Do I take medicine?,ANSWERABLE,0.174,0.091,-0.083,0.333,0.333,False,242,216,detail dropped
+Top-k + reranker only,251e29286cef45d899d7889e94ae25d5<::>7,Is the covid vaccine safe? any side-effect?,ANSWERABLE,0.571,0.500,-0.071,0.500,0.167,False,121,161,gold passage lost
+Top-k + reranker only,d7b4f863baa92fd08c1db2b1a95170dd<::>8,"Apart from gravity, what other factor is responsible for holding the universe together?",ANSWERABLE,0.667,0.615,-0.051,1.000,1.000,False,27,22,detail dropped
+Top-k + reranker only,f0d2873b877409f61da7dbdddd22d279<::>6,Is a jail sentence given for a child support conviction?,PARTIAL,0.333,0.286,-0.048,0.500,0.500,False,63,44,detail dropped
+Top-k + reranker only,ccdfb6b6f98c55047ae81b705104dbd6<::>7,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,ANSWERABLE,0.522,0.476,-0.046,0.750,0.500,False,98,92,gold passage lost + detail dropped
+Top-k + reranker only,f0d2873b877409f61da7dbdddd22d279<::>5,Could you please provide the procedures for a child support case?,ANSWERABLE,0.500,0.456,-0.044,0.000,0.000,False,578,525,detail dropped
+Top-k + reranker only,5600fe1c05a1fc415416d9dee6347000<::>8,why is it safe,ANSWERABLE,0.250,0.222,-0.028,0.000,0.000,False,51,64,other (run-to-run variation / judge)
+Top-k + reranker only,941445ba11ba7ba2c92c5184c9d798d6<::>1,What does a small claims court do,ANSWERABLE,0.375,0.353,-0.022,0.333,0.000,False,60,15,gold passage lost + detail dropped
+Top-k only,2cc753bcef23767c18aedad06c4405c4<::>7,how do I recycle paint?,ANSWERABLE,1.000,0.211,-0.789,1.000,0.000,False,34,139,gold passage lost
+Top-k only,af57ff6995d958858fc451e606fdb54d<::>8,must be in-state business to participate?,ANSWERABLE,0.500,0.000,-0.500,0.000,0.000,False,140,41,detail dropped
+Top-k only,f0d2873b877409f61da7dbdddd22d279<::>5,Could you please provide the procedures for a child support case?,ANSWERABLE,0.500,0.270,-0.230,0.000,0.000,False,578,288,detail dropped
+Top-k only,5503c6e98c54d4901332d0f1c6030bd9<::>1,What are the MOXIE instrument's primary attributes and functionalities?,ANSWERABLE,0.400,0.182,-0.218,1.000,0.600,False,193,188,gold passage lost + detail dropped
+Top-k only,251e29286cef45d899d7889e94ae25d5<::>7,Is the covid vaccine safe? any side-effect?,ANSWERABLE,0.571,0.435,-0.137,0.500,0.333,False,121,167,gold passage lost
+Top-k only,ccdfb6b6f98c55047ae81b705104dbd6<::>7,what is NASA Discovery Program? Is Deep Impact Mission part of NASA Discovery program?,ANSWERABLE,0.522,0.421,-0.101,0.750,0.250,False,98,94,gold passage lost + detail dropped
+Top-k only,af57ff6995d958858fc451e606fdb54d<::>4,Of course VA is federal !!,ANSWERABLE,0.500,0.400,-0.100,0.000,0.000,False,81,91,other (run-to-run variation / judge)
+Top-k only,fc3e765d7ffc28ffc7ee7ea38fd3c73a<::>7,Discrimination,ANSWERABLE,0.429,0.333,-0.095,0.000,0.000,False,74,42,detail dropped
+Top-k only,f0d2873b877409f61da7dbdddd22d279<::>6,Is a jail sentence given for a child support conviction?,PARTIAL,0.333,0.250,-0.083,0.500,0.000,False,63,56,gold passage lost + detail dropped
+Top-k only,251e29286cef45d899d7889e94ae25d5<::>3,I am not sure what to do if my covid test result is positive,ANSWERABLE,0.632,0.571,-0.060,0.667,0.667,False,92,156,other (run-to-run variation / judge)
+Top-k only,941445ba11ba7ba2c92c5184c9d798d6<::>1,What does a small claims court do,ANSWERABLE,0.375,0.316,-0.059,0.333,0.000,False,60,76,gold passage lost
+Top-k only,0ef145e49938dfb9b6eefe781d21dca8<::>3,Raising protection to 18 yr old?,PARTIAL,0.154,0.100,-0.054,0.000,0.000,False,116,141,other (run-to-run variation / judge)
+Top-k only,72ba19c38518da1fc894fc638a2802f7<::>5,"Of course I knew it!  just teasing, sorry.  How to scripts sprite?",ANSWERABLE,0.400,0.348,-0.052,0.250,0.250,False,90,118,other (run-to-run variation / judge)
+Top-k only,72ba19c38518da1fc894fc638a2802f7<::>4,sprite the sprite of bevarage?,ANSWERABLE,0.667,0.615,-0.051,0.333,0.333,False,73,63,other (run-to-run variation / judge)
+Top-k only,5600fe1c05a1fc415416d9dee6347000<::>8,why is it safe,ANSWERABLE,0.250,0.200,-0.050,0.000,0.000,False,51,54,other (run-to-run variation / judge)
+Top-k only,5600fe1c05a1fc415416d9dee6347000<::>1,Name the sources of light pollution that affect skywatching.,ANSWERABLE,0.714,0.667,-0.048,1.000,1.000,False,26,20,detail dropped
+Top-k only,5503c6e98c54d4901332d0f1c6030bd9<::>6,wow there are so many I didn't recognize. Are they all by us?,ANSWERABLE,0.308,0.286,-0.022,0.000,0.000,False,62,84,other (run-to-run variation / judge)
