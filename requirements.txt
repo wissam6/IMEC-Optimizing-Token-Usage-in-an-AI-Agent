@@ -5,8 +5,12 @@ sentence-transformers
 faiss-cpu
 
 # Evaluation
-ragas
-pandas
+# Pinned: on Windows with Smart App Control on, pandas 3.1.1 and pyarrow 26 DLLs are blocked;
+# ragas 0.4.3 imports a Vertex AI module that langchain-community 0.4 removed.
+ragas==0.4.3
+langchain-community==0.3.31
+pandas==2.3.3
+pyarrow==25.0.1
 matplotlib
 
 # Testing
