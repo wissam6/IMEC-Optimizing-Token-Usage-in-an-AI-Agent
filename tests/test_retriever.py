@@ -33,6 +33,17 @@ def test_top4_is_prefix_of_top10(retriever):
     assert [p["id"] for p in retriever.search(q, 4)] == [p["id"] for p in retriever.search(q, 10)][:4]
 
 
+@needs_index
+def test_rerank_returns_k_passages_from_the_candidates(retriever):
+    q = "how do I recycle paint?"
+    candidates = {p["id"] for p in retriever.search(q, 20)}
+    reranked = retriever.search(q, 4, rerank_candidates=20)
+    assert len(reranked) == 4
+    assert {p["id"] for p in reranked} <= candidates  # reranking only re-orders, never adds passages
+    scores = [p["score"] for p in reranked]
+    assert scores == sorted(scores, reverse=True)
+
+
 def test_recall_at_k():
     assert recall_at_k(["a", "b", "c"], ["a", "x"]) == 0.5
     assert recall_at_k(["a"], ["a"]) == 1.0

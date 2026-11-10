@@ -66,7 +66,10 @@ def run(turn, config_name, run_name="dev", call_llm=None):
         raise RuntimeError("Set OPENAI_MODEL in .env before making real API calls.")
 
     # Retrieval query: MTRAG's standalone rewrite (same for every config).
-    passages = get_retriever().search(turn["rewritten_question"], config["top_k"])
+    t_retrieval = time.perf_counter()
+    passages = get_retriever().search(
+        turn["rewritten_question"], config["top_k"], rerank_candidates=config.get("rerank_candidates"))
+    retrieval_latency = time.perf_counter() - t_retrieval
     messages = build_messages(turn, passages, config)
 
     call_llm = call_llm or _openai_call
@@ -86,6 +89,7 @@ def run(turn, config_name, run_name="dev", call_llm=None):
         "top_k": config["top_k"],
         "max_tokens": config["max_tokens"],
         "length_control": config["length_control"],
+        "rerank_candidates": config.get("rerank_candidates"),
         "retrieved_ids": [p["id"] for p in passages],
         "gold_ids": turn["gold_passage_ids"],
         "input_tokens": usage.prompt_tokens,
@@ -93,7 +97,8 @@ def run(turn, config_name, run_name="dev", call_llm=None):
         "reasoning_tokens": getattr(details, "reasoning_tokens", None) if details else None,
         "cached_input_tokens": getattr(cached, "cached_tokens", None) if cached else None,
         "finish_reason": choice.finish_reason,
-        "latency_s": round(latency, 3),
+        "latency_s": round(latency, 3),  # LLM call only
+        "retrieval_latency_s": round(retrieval_latency, 3),  # embedding search (+ reranking, if any)
         "answer": choice.message.content or "",
     }
     log(result, run_name)
@@ -120,7 +125,8 @@ def preview(config_name, i=0):
     """Print exactly what would be sent to the LLM, without calling it."""
     turn = load_turns()[i]
     config = CONFIGS[config_name]
-    passages = get_retriever().search(turn["rewritten_question"], config["top_k"])
+    passages = get_retriever().search(
+        turn["rewritten_question"], config["top_k"], rerank_candidates=config.get("rerank_candidates"))
     messages = build_messages(turn, passages, config)
     print(f"config={config_name} {config}  model={MODEL}  task={turn['task_id']}")
     print(f"retrieval query: {turn['rewritten_question']}")

@@ -1,0 +1,7 @@
+run_name,config,n,input_tokens,output_tokens,cost_usd_per_1k_questions,latency_s,retrieval_latency_s,truncation_rate,recall_at_k,fc_f1,fc_precision,fc_recall,faithfulness,empty
+baseline_run1,baseline,30,4760.467,131.733,1.117,1.715,,0.0,0.425,0.426,0.493,0.415,0.945,0
+combined_rerank_run1,combined_rerank,30,2272.1,86.1,0.562,1.427,5.698,0.033,0.316,0.394,0.466,0.38,0.974,0
+combined_run1,combined,30,2263.7,96.4,0.573,1.339,,0.067,0.283,0.378,0.433,0.377,0.94,0
+length_only_run1,length_only,30,4852.467,94.9,1.089,1.358,0.062,0.033,0.425,0.387,0.441,0.387,0.947,0
+topk_only_run1,topk_only,30,2171.7,120.5,0.585,1.66,0.064,0.0,0.283,0.391,0.448,0.396,0.922,0
+topk_rerank_only_run1,topk_rerank_only,30,2180.1,132.867,0.602,1.633,5.758,0.0,0.316,0.418,0.473,0.439,0.965,0

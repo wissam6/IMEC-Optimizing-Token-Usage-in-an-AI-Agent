@@ -1,12 +1,13 @@
 """Dense retriever: bge-small embeddings + exact FAISS inner-product search over one MTRAG corpus.
 
 Usage:
-  python src/retriever.py build    # embed the whole Govt corpus, save to data/index/ (~10-15 min on CPU)
-  python src/retriever.py check    # Recall@4 / Recall@10 on the sampled turns
+  python src/retriever.py build    # embed the whole Govt corpus, save to data/index/ (74 min on CPU)
+  python src/retriever.py check    # Recall@k on the sampled turns, with and without the reranker
 
 In code:
   r = Retriever.load()
   r.search("How do I know a government website is secure?", k=4)
+  r.search("...", k=4, rerank_candidates=20)   # top 20 by embedding, reranked by a cross-encoder, keep 4
 """
 import json
 import sys
@@ -26,6 +27,9 @@ SAMPLE = ROOT / "data" / "sample_govt.jsonl"
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 # bge v1.5 recommends this instruction on queries (not on passages) for retrieval.
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
+# Cross-encoder: reads (query, passage) together, so it ranks more precisely than embeddings, but is
+# too slow to run over the whole corpus; it only re-orders the embedding search's top candidates.
+RERANKER_NAME = "BAAI/bge-reranker-base"
 
 
 def load_corpus():
@@ -75,11 +79,29 @@ class Retriever:
         model = SentenceTransformer(MODEL_NAME, device="cpu")
         return cls(model, index, passages)
 
-    def search(self, query, k):
-        """Return exactly k passages as dicts {'id', 'text', 'score'}, best first."""
+    def search(self, query, k, rerank_candidates=None):
+        """Return exactly k passages as dicts {'id', 'text', 'score'}, best first.
+
+        With rerank_candidates=N, the embedding search returns N candidates, a cross-encoder re-scores
+        them, and the best k are kept ('score' is then the reranker score).
+        """
+        n = max(k, rerank_candidates or 0)
         q = self.model.encode([QUERY_PREFIX + query], normalize_embeddings=True, convert_to_numpy=True)
-        scores, idx = self.index.search(q.astype("float32"), k)
-        return [{**self.passages[i], "score": float(s)} for s, i in zip(scores[0], idx[0])]
+        scores, idx = self.index.search(q.astype("float32"), n)
+        hits = [{**self.passages[i], "score": float(s)} for s, i in zip(scores[0], idx[0])]
+        if not rerank_candidates:
+            return hits[:k]
+        rerank_scores = self.reranker().predict([(query, h["text"]) for h in hits])
+        order = np.argsort(-rerank_scores, kind="stable")[:k]
+        return [{**hits[i], "score": float(rerank_scores[i])} for i in order]
+
+    def reranker(self):
+        """Load the cross-encoder on first use, so configs without reranking never load it."""
+        if not hasattr(self, "_reranker"):
+            from sentence_transformers import CrossEncoder
+
+            self._reranker = CrossEncoder(RERANKER_NAME, device="cpu", max_length=512)
+        return self._reranker
 
 
 def recall_at_k(retrieved_ids, gold_ids):
@@ -94,14 +116,17 @@ def check():
     r = Retriever.load()
     with open(SAMPLE, encoding="utf-8") as f:
         turns = [json.loads(line) for line in f]
-    for k in (4, 10):
+    for k, rerank in ((4, None), (10, None), (20, None), (4, 20)):
         recalls, hits = [], 0
+        t0 = time.time()
         for t in turns:
-            ids = [p["id"] for p in r.search(t["rewritten_question"], k)]
+            ids = [p["id"] for p in r.search(t["rewritten_question"], k, rerank_candidates=rerank)]
             rec = recall_at_k(ids, t["gold_passage_ids"])
             recalls.append(rec)
             hits += rec > 0
-        print(f"Recall@{k:<2}: {np.mean(recalls):.3f}   turns with >=1 gold passage retrieved: {hits}/{len(turns)}")
+        label = f"Recall@{k}" + (f" (rerank top {rerank})" if rerank else "")
+        print(f"{label:<26}: {np.mean(recalls):.3f}   turns with >=1 gold: {hits}/{len(turns)}"
+              f"   {(time.time() - t0) / len(turns):.2f} s/query")
 
 
 if __name__ == "__main__":

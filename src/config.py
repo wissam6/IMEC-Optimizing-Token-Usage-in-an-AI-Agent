@@ -30,13 +30,23 @@ You must follow these output constraints:
 Then end with exactly one line of the form "Sources: [n], [m]" listing the context passages you used.
 3. No filler: no introductions (e.g. "Here is the answer"), no pleasantries, no repetition of the question."""
 
+# Judge model for RAGAS (non-reasoning, temperature 0, different from the agent model).
+JUDGE_MODEL = "gpt-4.1-mini"
+
+# USD per 1M tokens for the agent model (gpt-5.4-nano, OpenAI pricing page).
+PRICES = {"input": 0.20, "cached_input": 0.02, "output": 1.25}
+
 # --- The configs ------------------------------------------------------------
 CONFIGS = {
     "baseline":    {"top_k": 10, "max_tokens": 1024, "length_control": False},
     "combined":    {"top_k": 4,  "max_tokens": 200,  "length_control": True},
-    # Optional ablations (only run if decided later):
-    "topk_only":   {"top_k": 4,  "max_tokens": 1024, "length_control": False},
-    "length_only": {"top_k": 10, "max_tokens": 200,  "length_control": True},
+    # Follow-up (added after the main run): same as combined, but the top 4 are chosen by a cross-encoder
+    # reranker from the embedding search's top 20, to recover gold passages that k=4 lost.
+    "combined_rerank": {"top_k": 4, "max_tokens": 200, "length_control": True, "rerank_candidates": 20},
+    # Ablations: each applies ONE technique to the baseline, to measure its effect in isolation.
+    "topk_only":        {"top_k": 4,  "max_tokens": 1024, "length_control": False},
+    "length_only":      {"top_k": 10, "max_tokens": 200,  "length_control": True},
+    "topk_rerank_only": {"top_k": 4,  "max_tokens": 1024, "length_control": False, "rerank_candidates": 20},
 }
 
 

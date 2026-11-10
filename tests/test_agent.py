@@ -20,8 +20,8 @@ TURN = {
 
 
 class FakeRetriever:
-    def search(self, query, k):
-        self.last_query = query
+    def search(self, query, k, rerank_candidates=None):
+        self.last_query, self.last_rerank = query, rerank_candidates
         return [{"id": f"p{i}", "text": f"passage {i}", "score": 1.0 - i / 100} for i in range(k)]
 
 
@@ -99,6 +99,27 @@ def test_only_system_prompt_and_context_differ_between_configs(isolated):
     assert comb[0]["content"].startswith(base[0]["content"])    # constraints are only appended
     assert base[-1]["content"].count("\n[") == 10 and comb[-1]["content"].count("\n[") == 4
     assert base[-1]["content"].endswith("Question: What about earthquakes?")
+
+
+def test_rerank_config_differs_from_combined_only_by_reranking(isolated):
+    extra = {k: v for k, v in CONFIGS["combined_rerank"].items() if CONFIGS["combined"].get(k) != v}
+    assert extra == {"rerank_candidates": 20}
+    r = agent.run(TURN, "combined_rerank", run_name="t", call_llm=fake_llm())
+    assert agent._retriever.last_rerank == 20 and r["rerank_candidates"] == 20
+    assert "retrieval_latency_s" in r
+    agent.run(TURN, "combined", run_name="t", call_llm=fake_llm())
+    assert agent._retriever.last_rerank is None  # no reranking in the original configs
+
+
+@pytest.mark.parametrize("name, expected_change", [
+    ("topk_only", {"top_k": 4}),
+    ("length_only", {"max_tokens": 200, "length_control": True}),
+    ("topk_rerank_only", {"top_k": 4, "rerank_candidates": 20}),
+])
+def test_each_ablation_changes_only_its_technique(name, expected_change):
+    base = CONFIGS["baseline"]
+    changed = {k: v for k, v in CONFIGS[name].items() if base.get(k) != v}
+    assert changed == expected_change
 
 
 def test_history_roles_are_mapped():

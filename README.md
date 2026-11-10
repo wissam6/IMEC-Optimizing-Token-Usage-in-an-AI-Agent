@@ -19,7 +19,15 @@ A small proof of concept that compares a **baseline RAG agent** with a **token-o
 
 All configs are defined in [src/config.py](src/config.py).
 
-**Optional ablations (only if time allows):** Top-k only (k=4, no length control) and Length only (k=10 + length control).
+**Follow-up config, added after the main run (not pre-registered):** `combined_rerank` is Combined plus a cross-encoder reranker (`BAAI/bge-reranker-base`). The embedding search returns 20 candidates, the reranker re-scores them, and the best 4 are kept. Motivation: in the main run almost all of Combined's quality loss came from turns where k=4 dropped the gold passage. Reranking costs no LLM tokens, but it adds local compute time, which is logged separately as `retrieval_latency_s`. Retrieval-only check: Recall@4 goes from 0.283 to 0.316 (15 → 16 of 30 turns with at least one gold passage), and the gold passage is recovered on both turns that were hurt most in the main run.
+
+**Ablations (added after the main run):** each applies a single technique to the Baseline, so its effect can be measured in isolation:
+
+| Config | Top-k | Reranker | `max_tokens` | Length constraints in prompt |
+|---|---|---|---|---|
+| `topk_only` | 4 | no | 1024 | no |
+| `topk_rerank_only` | 4 (from top 20) | yes | 1024 | no |
+| `length_only` | 10 | no | 200 | yes |
 
 **Held constant across configs:** the same OpenAI model (`gpt-5.4-nano-2026-03-17`; `gpt-5.6-luna` was rejected because it does not support temperature 0), temperature 0, the same embedding model and index, the same conversation history for each turn, and the same retrieval query (MTRAG's standalone rewritten question).
 
@@ -55,6 +63,8 @@ All configs are defined in [src/config.py](src/config.py).
 | FactualCorrectness precision | share of the answer's claims that the reference supports (*diagnostic only*: a drop means the agent says wrong things) |
 | FactualCorrectness recall | share of the reference's claims that the answer covers (*diagnostic only*: a drop means the agent says less) |
 
+**Judge:** RAGAS 0.4.3 with `gpt-4.1-mini` at temperature 0 (non-reasoning, and a different model from the agent). The retrieval question given to Faithfulness is the standalone rewritten question, because the judge does not see the conversation history.
+
 RAGAS scores only the **answer part** of each response, not the cited-sources line. An **empty answer** (blank, or nothing left after removing the Sources line) is not sent to the judge and scores **0** on every quality metric, so it counts as a failure rather than being dropped. Precision, recall and F1 are computed from a **single judge pass** per answer (one claim decomposition and verification, three numbers derived from it), not from three separate RAGAS runs, so the three are consistent with each other.
 
 ### Pass/fail rules (fixed before running)
@@ -67,6 +77,8 @@ The optimized agent **passes** if both of these hold:
 2. **Faithfulness:** Δ ≥ 0, **or** |Δ| ≤ noise.
 
 FactualCorrectness precision and recall are reported next to F1 to explain *why* F1 moved, but they do not enter the verdict.
+
+> **Deviation from this plan:** Baseline was run **once**, not twice, so the run-to-run noise was not measured and the "|Δ| ≤ noise" clauses cannot be applied. The verdict therefore uses the fixed thresholds only (F1: Δ ≥ −0.03; Faithfulness: Δ ≥ 0). As a substitute indication of uncertainty, a paired bootstrap 95% confidence interval of the per-turn Δ is reported. Note that noise is real here: in the smoke test, 0 of 10 repeated answers were identical despite temperature 0.
 
 In other words, a drop only counts as real degradation if it is larger than the run-to-run noise. Turns where Combined scores lower than Baseline are reviewed by hand and labelled with a cause: *gold passage lost* (Recall@k), *truncated* (`finish_reason = length`), or *detail dropped* (shorter answer).
 
