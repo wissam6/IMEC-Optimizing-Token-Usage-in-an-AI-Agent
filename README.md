@@ -55,7 +55,7 @@ All configs are defined in [src/config.py](src/config.py).
 | FactualCorrectness precision | share of the answer's claims that the reference supports (*diagnostic only*: a drop means the agent says wrong things) |
 | FactualCorrectness recall | share of the reference's claims that the answer covers (*diagnostic only*: a drop means the agent says less) |
 
-RAGAS scores only the **answer part** of each response, not the cited-sources line. Precision, recall and F1 are computed from a **single judge pass** per answer (one claim decomposition and verification, three numbers derived from it), not from three separate RAGAS runs, so the three are consistent with each other.
+RAGAS scores only the **answer part** of each response, not the cited-sources line. An **empty answer** (blank, or nothing left after removing the Sources line) is not sent to the judge and scores **0** on every quality metric, so it counts as a failure rather than being dropped. Precision, recall and F1 are computed from a **single judge pass** per answer (one claim decomposition and verification, three numbers derived from it), not from three separate RAGAS runs, so the three are consistent with each other.
 
 ### Pass/fail rules (fixed before running)
 
@@ -75,7 +75,7 @@ In other words, a drop only counts as real degradation if it is larger than the 
 - **Smoke test:** the first 5 turns of the sample (indices 0–4) for both configs (10 calls), read by hand before the full run.
 - **Noise run:** Baseline is run twice to measure judge and model variance.
 - **Judge hand-check:** 20 RAGAS judgments are checked by hand against my own assessment.
-- **Unit tests** (`pytest`): the retriever returns exactly k passages, token counts are logged, each config changes only what it should, the system prompt contains the constraints, and the evaluation handles empty answers.
+- **Unit tests** (`python -m pytest`, 27 tests, no API calls): the retriever returns exactly k passages (and k=4 is a prefix of k=10), token counts are logged one line per call, each config changes only `top_k`, `max_tokens` and the system-prompt constraints (history and retrieval query identical), the system prompt contains the constraints, the Sources line is stripped in every format seen in the smoke test, and empty answers are handled.
 
 ## Repository layout
 
