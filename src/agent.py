@@ -1,11 +1,3 @@
-"""RAG agent: run(turn, config) -> answer + token usage, with one JSON log line per LLM call.
-
-Usage:
-  python src/agent.py preview <config> [turn_index]   # print the exact messages, NO API call, no cost
-  python src/agent.py run <config> [turn_index]       # one real API call (costs money)
-
-  <config> is a key of CONFIGS in src/config.py (baseline, combined, ...).
-"""
 import json
 import sys
 import time
