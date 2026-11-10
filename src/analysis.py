@@ -16,7 +16,6 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "results"
 BASELINE = "baseline_run1"
-# Order = how they appear in tables. 'pre-registered' marks the comparison fixed before any runs.
 RUNS = {
     "combined_run1": "Combined (pre-registered)",
     "combined_rerank_run1": "Combined + reranker",
@@ -28,7 +27,6 @@ F1_THRESHOLD, FAITH_THRESHOLD = -0.03, 0.0
 N_BOOT, SEED = 5000, 0
 HAND_CHECK_TASKS, HAND_CHECK_SEED = 10, 7
 
-# Chart tokens (light surface; static PNG for the PDF).
 SERIES, INK, INK_2, GRID, SURFACE = "#2a78d6", "#0b0b0b", "#52514e", "#e1e0d9", "#fcfcfb"
 
 
@@ -37,13 +35,10 @@ def scores(run):
 
 
 def paired_ci(diff):
-    """Mean of per-turn differences with a paired bootstrap 95% CI."""
     rng = np.random.default_rng(SEED)
     boots = [rng.choice(diff, len(diff)).mean() for _ in range(N_BOOT)]
     return diff.mean(), np.percentile(boots, 2.5), np.percentile(boots, 97.5)
 
-
-# --- 1. Results table ---------------------------------------------------------
 
 def comparison_table():
     b = scores(BASELINE)
@@ -61,7 +56,6 @@ def comparison_table():
             "fc_f1": x.fc_f1.mean(), "fc_precision": x.fc_precision.mean(), "fc_recall": x.fc_recall.mean(),
             "faithfulness": x.faithfulness.mean(),
             "llm_latency_s": x.latency_s.mean(),
-            # Not logged for the first runs (baseline, combined), which predate the reranker follow-up.
             "retrieval_latency_s": x["retrieval_latency_s"].mean() if "retrieval_latency_s" in x else np.nan,
         }
         if run != BASELINE:
@@ -95,8 +89,6 @@ def write_markdown_table(df):
     (RESULTS / "results_table.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-# --- 2. Chart: token reduction vs quality change -------------------------------
-
 def _style(ax):
     ax.set_facecolor(SURFACE)
     ax.grid(axis="x", color=GRID, lw=0.8)
@@ -108,7 +100,6 @@ def _style(ax):
 
 
 def chart(df):
-    """Three panels sharing one row per config: token reduction | ΔF1 | ΔFaithfulness (dot = mean, bar = 95% CI)."""
     d = df[df.config != "Baseline"].iloc[::-1]  # first config at the top
     y = np.arange(len(d))
     fig, axes = plt.subplots(1, 3, figsize=(11, 3.4), sharey=True, facecolor=SURFACE,
@@ -148,7 +139,6 @@ def chart(df):
     plt.close(fig)
 
 
-# --- 3. Per-turn causes where an optimized config scored worse -----------------
 
 def worse_turns():
     b = scores(BASELINE)
@@ -179,10 +169,8 @@ def worse_turns():
     return df
 
 
-# --- 4. Hand-check export --------------------------------------------------------
 
 def hand_check():
-    """20 judgments: the same 10 random turns, judged for Baseline and for Combined."""
     rng = np.random.default_rng(HAND_CHECK_SEED)
     task_ids = sorted(scores(BASELINE).index)
     picked = set(rng.choice(task_ids, HAND_CHECK_TASKS, replace=False))
@@ -204,7 +192,7 @@ def hand_check():
                 "my_verdicts_agree (yes/partly/no)": "", "my_f1_estimate": "", "notes": "",
             })
     df = pd.DataFrame(rows).sort_values(["task_id", "config"])
-    df.to_csv(RESULTS / "hand_check.csv", index=False, encoding="utf-8-sig")  # utf-8-sig opens cleanly in Excel
+    df.to_csv(RESULTS / "hand_check.csv", index=False, encoding="utf-8-sig")
     return df
 
 

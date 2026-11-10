@@ -118,7 +118,13 @@ python src/eval.py summary my_run
 `results/scores_my_run.csv`. `summary` averages those scores per config (free) and writes `results/summary.csv`;
 pass several run names to compare them side by side.
 
-## Lessons
+## Lessons Learned
+
+1. The tokens should be saved where they are. Most of the token usage coming from the Baseline are input tokens, thus it would have been smart to first run that and based on it choose appropriate technique, instead of choosing a technique first. Limiting the ouput tokens does not have a direct impact and is not needed even though it is a valid technique.
+
+2. Using top-k filtering is not enough and leads to a drop in quality. This is because with less passages, the agent can lose the only relevant one. However, with a re-ranker, it picks the best candidates with no extra token cost, but with the trade-off of extra latency.
+
+3. The token cap needs a margin. A 200-token cap with a 150-word limit still cut off some answers mid-sentence, so the cap should leave more room above the word limit.
 
 ## Main Sources
 

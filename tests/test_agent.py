@@ -40,7 +40,6 @@ def fake_llm(content="An answer.\nSources: [1]", finish="stop", prompt_tokens=10
 
 @pytest.fixture(autouse=True)
 def isolated(monkeypatch, tmp_path):
-    """Fake retriever + logs written to a temp folder, never to results/."""
     monkeypatch.setattr(agent, "_retriever", FakeRetriever())
     monkeypatch.setattr(agent, "LOG_DIR", tmp_path)
     return tmp_path
@@ -85,7 +84,6 @@ def test_config_controls_k_and_max_tokens(isolated):
 
 
 def test_only_system_prompt_and_context_differ_between_configs(isolated):
-    """Same retrieval query and same history in every config; the system prompt differs only by the constraints."""
     msgs = {}
     for name in ("baseline", "combined"):
         llm = fake_llm()

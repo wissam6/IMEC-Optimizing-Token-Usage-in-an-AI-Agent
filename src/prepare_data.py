@@ -17,15 +17,13 @@ CORPORA = MTRAG / "corpora" / "passage_level"
 TASKS = MTRAG / "mtrag-human" / "generation_tasks" / "reference.jsonl"
 DOMAINS = ["clapnq", "cloud", "fiqa", "govt"]
 
-# Sampling choices (see README): smallest corpus by passage count, gold passages required.
 DOMAIN = "govt"
-KEEP = ("ANSWERABLE", "PARTIAL")  # UNANSWERABLE / CONVERSATIONAL have no gold passages
+KEEP = ("ANSWERABLE", "PARTIAL")
 N_SAMPLE = 30
 SEED = 42
 
 
 def count_passages(domain):
-    """Count passages and total characters in a zipped passage-level corpus."""
     n, chars = 0, 0
     with zipfile.ZipFile(CORPORA / f"{domain}.jsonl.zip") as zf:
         name = [x for x in zf.namelist() if x.endswith(".jsonl")][0]
@@ -43,7 +41,6 @@ def load_tasks():
 
 def inspect():
     tasks = load_tasks()
-    # Note: the real files use capitalised keys ("Collection", "Answerability"), unlike the README.
     by_domain = {d: [t for t in tasks if d in t["Collection"]] for d in DOMAINS}
     print(f"Total generation tasks: {len(tasks)}")
     print(f"Collection names seen: {sorted(Counter(t['Collection'] for t in tasks))}\n")
@@ -63,7 +60,6 @@ def inspect():
 
 
 def load_rewrites(domain):
-    """Standalone (rewritten) question per task, e.g. '|user|: What items ...' -> 'What items ...'."""
     path = MTRAG / "mtrag-human" / "retrieval_tasks" / domain / f"{domain}_rewrite.jsonl"
     with open(path, encoding="utf-8") as f:
         rows = [json.loads(line) for line in f]
@@ -71,7 +67,6 @@ def load_rewrites(domain):
 
 
 def sample(domain=DOMAIN, n=N_SAMPLE, seed=SEED):
-    """Sample n ANSWERABLE/PARTIAL tasks from one domain and save them to data/sample_<domain>.jsonl."""
     tasks = [t for t in load_tasks() if domain in t["Collection"] and t["Answerability"][0] in KEEP]
     tasks.sort(key=lambda t: t["task_id"])  # fixed order so the seed is reproducible
     picked = random.Random(seed).sample(tasks, n)

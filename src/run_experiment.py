@@ -4,8 +4,8 @@ Usage:
   python src/run_experiment.py <run_name> <config>[,<config>...] [n_turns]
 
 Examples:
-  python src/run_experiment.py smoke baseline,combined 5      # smoke test: first 5 turns
-  python src/run_experiment.py baseline_run1 baseline         # all 30 turns
+  python src/run_experiment.py smoke baseline,combined 5
+  python src/run_experiment.py baseline_run1 baseline
 """
 import sys
 

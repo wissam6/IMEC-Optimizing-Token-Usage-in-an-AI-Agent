@@ -23,20 +23,13 @@ SAMPLE = ROOT / "data" / "sample_govt.jsonl"
 PASSAGES = ROOT / "data" / "index" / "govt_passages.jsonl"
 CONCURRENCY = 5
 
-# A "Sources: ..." line in any of the formats seen in the smoke test:
-# "Sources: [1], [3]", "Sources: 1, 2, 3, 4", "Sources: [1], [1]", also "**Sources:**".
 _SOURCES_LINE = re.compile(r"\s*\**sources?\**\s*:", re.IGNORECASE)
 
 
 def answer_for_scoring(answer):
-    """The part of a response that RAGAS should judge: the answer without the Sources line.
-
-    Returns "" for a missing or blank answer.
-    """
     if not answer or not answer.strip():
         return ""
     lines = answer.strip().splitlines()
-    # Cut at the last Sources line, but only if answer text comes before it.
     for i in range(len(lines) - 1, 0, -1):
         if _SOURCES_LINE.match(lines[i]):
             return "\n".join(lines[:i]).strip()
@@ -44,7 +37,6 @@ def answer_for_scoring(answer):
 
 
 def is_empty(answer):
-    """Empty answers are not sent to the judge; they are scored 0 on every quality metric (a failure)."""
     return answer_for_scoring(answer) == ""
 
 
@@ -58,21 +50,18 @@ def load_jsonl(path):
         return [json.loads(line) for line in f]
 
 
-# --- Judge ------------------------------------------------------------------
-
 def make_metrics():
     from langchain_openai import ChatOpenAI
     from ragas.llms import LangchainLLMWrapper
     from ragas.metrics import FactualCorrectness, Faithfulness
 
-    from config import JUDGE_MODEL  # also loads .env
+    from config import JUDGE_MODEL
 
     llm = LangchainLLMWrapper(ChatOpenAI(model=JUDGE_MODEL, temperature=0))
     return FactualCorrectness(llm=llm), Faithfulness(llm=llm)
 
 
 async def judge_one(record, turn, contexts, fc, ff, sem):
-    """Score one logged answer. Returns (scores row, judgment details for the hand-check)."""
     from ragas import SingleTurnSample
     from ragas.metrics.utils import fbeta_score
 
@@ -82,12 +71,12 @@ async def judge_one(record, turn, contexts, fc, ff, sem):
     detail = {"task_id": record["task_id"], "config": record["config"], "question": turn["question"],
               "answer_scored": answer, "reference": reference}
 
-    if row["empty"]:  # pre-registered rule: empty answers score 0, judge not called
+    if row["empty"]:
         row.update(fc_precision=0.0, fc_recall=0.0, fc_f1=0.0, faithfulness=0.0, tp=0, fp=0, fn=0)
         return row, detail
 
     async with sem:
-        for attempt in (1, 2):  # one retry on a malformed judge output / transient API error
+        for attempt in (1, 2):
             try:
                 answer_claims = await fc.decompose_claims(answer, None)
                 ref_claims = await fc.decompose_claims(reference, None)
@@ -98,7 +87,7 @@ async def judge_one(record, turn, contexts, fc, ff, sem):
                 faith = await ff.single_turn_ascore(SingleTurnSample(
                     user_input=turn["rewritten_question"], response=answer, retrieved_contexts=contexts))
                 break
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 if attempt == 2:
                     row.update(error=f"{type(e).__name__}: {e}"[:300])
                     return row, detail
@@ -138,7 +127,7 @@ async def score_run(run_name, n=None):
             "answerability": t["answerability"], "top_k": r["top_k"], "max_tokens": r["max_tokens"],
             "input_tokens": r["input_tokens"], "output_tokens": r["output_tokens"],
             "cached_input_tokens": r["cached_input_tokens"], "latency_s": r["latency_s"],
-            "retrieval_latency_s": r.get("retrieval_latency_s"),  # not logged before the reranker follow-up
+            "retrieval_latency_s": r.get("retrieval_latency_s"),
             "finish_reason": r["finish_reason"], "truncated": r["finish_reason"] == "length",
             "recall_at_k": recall_at_k(r["retrieved_ids"], r["gold_ids"]),
             "answer_words": len(answer_for_scoring(r["answer"]).split()),

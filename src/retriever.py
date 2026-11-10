@@ -25,15 +25,11 @@ INDEX_DIR = ROOT / "data" / "index"
 SAMPLE = ROOT / "data" / "sample_govt.jsonl"
 
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
-# bge v1.5 recommends this instruction on queries (not on passages) for retrieval.
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
-# Cross-encoder: reads (query, passage) together, so it ranks more precisely than embeddings, but is
-# too slow to run over the whole corpus; it only re-orders the embedding search's top candidates.
 RERANKER_NAME = "BAAI/bge-reranker-base"
 
 
 def load_corpus():
-    """Return a list of {'id', 'text'} dicts from the zipped passage-level corpus."""
     with zipfile.ZipFile(CORPUS_ZIP) as zf:
         name = [x for x in zf.namelist() if x.endswith(".jsonl")][0]
         with zf.open(name) as f:
@@ -44,7 +40,7 @@ class Retriever:
     def __init__(self, model, index, passages):
         self.model = model
         self.index = index
-        self.passages = passages  # position i in the index == passages[i]
+        self.passages = passages
 
     @classmethod
     def build(cls):
@@ -55,13 +51,13 @@ class Retriever:
         emb = model.encode(
             [p["text"] for p in passages],
             batch_size=64,
-            normalize_embeddings=True,  # normalized + inner product == cosine similarity
+            normalize_embeddings=True,
             show_progress_bar=True,
             convert_to_numpy=True,
         ).astype("float32")
         print(f"Done in {(time.time() - t0) / 60:.1f} min")
 
-        index = faiss.IndexFlatIP(emb.shape[1])  # exact search; 50k x 384 is small enough
+        index = faiss.IndexFlatIP(emb.shape[1])
         index.add(emb)
 
         INDEX_DIR.mkdir(parents=True, exist_ok=True)
@@ -80,11 +76,6 @@ class Retriever:
         return cls(model, index, passages)
 
     def search(self, query, k, rerank_candidates=None):
-        """Return exactly k passages as dicts {'id', 'text', 'score'}, best first.
-
-        With rerank_candidates=N, the embedding search returns N candidates, a cross-encoder re-scores
-        them, and the best k are kept ('score' is then the reranker score).
-        """
         n = max(k, rerank_candidates or 0)
         q = self.model.encode([QUERY_PREFIX + query], normalize_embeddings=True, convert_to_numpy=True)
         scores, idx = self.index.search(q.astype("float32"), n)
@@ -96,7 +87,6 @@ class Retriever:
         return [{**hits[i], "score": float(rerank_scores[i])} for i in order]
 
     def reranker(self):
-        """Load the cross-encoder on first use, so configs without reranking never load it."""
         if not hasattr(self, "_reranker"):
             from sentence_transformers import CrossEncoder
 
@@ -105,14 +95,12 @@ class Retriever:
 
 
 def recall_at_k(retrieved_ids, gold_ids):
-    """Share of gold passages that appear in the retrieved list."""
     if not gold_ids:
         return None
     return len(set(retrieved_ids) & set(gold_ids)) / len(set(gold_ids))
 
 
 def check():
-    """Sanity check: Recall@k on the sampled turns, querying with MTRAG's rewritten question."""
     r = Retriever.load()
     with open(SAMPLE, encoding="utf-8") as f:
         turns = [json.loads(line) for line in f]

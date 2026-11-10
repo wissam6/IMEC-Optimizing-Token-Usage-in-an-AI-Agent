@@ -28,7 +28,6 @@ def test_results_are_sorted_best_first(retriever):
 
 @needs_index
 def test_top4_is_prefix_of_top10(retriever):
-    """Top-k filtering only cuts the list: k=4 must be the first 4 of k=10."""
     q = "What should I do if my garbage collection is missed?"
     assert [p["id"] for p in retriever.search(q, 4)] == [p["id"] for p in retriever.search(q, 10)][:4]
 

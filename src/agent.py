@@ -25,9 +25,9 @@ def get_retriever():
 def get_client():
     global _client
     if _client is None:
-        from openai import OpenAI  # imported here so `preview` works without an API key
+        from openai import OpenAI
 
-        _client = OpenAI()  # reads OPENAI_API_KEY from the environment / .env
+        _client = OpenAI()
     return _client
 
 
@@ -37,7 +37,6 @@ def load_turns():
 
 
 def build_messages(turn, passages, config):
-    """System prompt + full conversation history + (context passages and the current question)."""
     messages = [{"role": "system", "content": system_prompt(config)}]
     for msg in turn["history"]:
         role = "user" if msg["speaker"] == "user" else "assistant"
@@ -49,15 +48,10 @@ def build_messages(turn, passages, config):
 
 
 def run(turn, config_name, run_name="dev", call_llm=None):
-    """Answer one turn with one config. Returns a result dict and appends it to results/logs/<run_name>.jsonl.
-
-    call_llm can be replaced in tests with a fake function(messages, max_tokens) -> OpenAI-style response.
-    """
     config = CONFIGS[config_name]
     if call_llm is None and not MODEL:
         raise RuntimeError("Set OPENAI_MODEL in .env before making real API calls.")
 
-    # Retrieval query: MTRAG's standalone rewrite (same for every config).
     t_retrieval = time.perf_counter()
     passages = get_retriever().search(
         turn["rewritten_question"], config["top_k"], rerank_candidates=config.get("rerank_candidates"))
@@ -107,14 +101,12 @@ def _openai_call(messages, max_tokens):
 
 
 def log(result, run_name):
-    """Append one JSON line per LLM call."""
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     with open(LOG_DIR / f"{run_name}.jsonl", "a", encoding="utf-8") as f:
         f.write(json.dumps(result, ensure_ascii=False) + "\n")
 
 
 def preview(config_name, i=0):
-    """Print exactly what would be sent to the LLM, without calling it."""
     turn = load_turns()[i]
     config = CONFIGS[config_name]
     passages = get_retriever().search(
