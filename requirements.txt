@@ -1,0 +1,15 @@
+# Retrieval (tested: torch 2.15.0+cpu, sentence-transformers 6.2.0, faiss-cpu 1.15.1, Python 3.14)
+# For a CPU-only torch install first run:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+sentence-transformers
+faiss-cpu
+
+# Evaluation
+ragas
+pandas
+matplotlib
+
+# Testing
+pytest
+
+# LLM provider SDK: added in step 4, once the provider/model is chosen.

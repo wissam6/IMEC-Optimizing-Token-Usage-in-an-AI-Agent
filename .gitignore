@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets
+.env
+
+# Large / re-downloadable data (the sampled turns and results ARE committed)
+data/raw/
+data/index/
+
+# Editor / OS
+.vscode/
+.DS_Store
